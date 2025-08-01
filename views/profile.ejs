@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+    }
+    .container {
+      max-width: 800px;
+      background: white;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background: #007BFF;
+      color: white;
+    }
+    a.button {
+      text-decoration: none;
+      color: white;
+      background: #007BFF;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-right: 10px;
+      display: inline-block;
+    }
+    a.button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Profile: <%= user.username %></h1>
+    <h2>Last Login: <%= new Date(lastLogin).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) %></h2>
+
+    <h3>Login & Logout History</h3>
+    <% if (activity.length === 0) { %>
+      <p>No activity found.</p>
+    <% } else { %>
+      <table>
+        <tr>
+          <th>Timestamp (IST)</th>
+          <th>Event Type</th>
+        </tr>
+        <% activity.forEach(function(item) { %>
+          <tr>
+            <td><%= new Date(item.timestamp).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) %></td>
+            <td><%= item.eventType %></td>
+          </tr>
+        <% }) %>
+      </table>
+    <% } %>
+
+    <br>
+    <a href="/dashboard" class="button">Back to Dashboard</a>
+    <a href="/logout" class="button">Logout</a>
+  </div>
+</body>
+</html>
+
