@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   app:
+    image: node-dynamo-login-logout-app
     build: .
     container_name: node-login-app
     ports:
